@@ -76,6 +76,10 @@ button {
   justify-content: center; 
 }
 
+  input::placeholder {
+    font-size: 10px;
+  }
+
 .imagens {
     display: flex;
     justify-content: center;
