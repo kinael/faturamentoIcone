@@ -1,0 +1,89 @@
+body {
+  font-family: Arial, sans-serif;
+    font-size: 100%;
+    overflow: hidden;
+    padding-bottom: 50px;
+background-color: #F5F5F5;
+}
+
+footer {
+    position: fixed; 
+    bottom: 0;
+    left: 0; 
+    right: 0;
+    background-color: #fff; 
+    text-align: center;
+    padding: 10px 0; 
+}
+
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px;
+}
+
+.container input, .container button {
+    padding: 5px;
+  }
+
+.titulopg {
+background-color: #90ee90;
+    font-size: 1.8em;
+}
+
+#valorDesconto {
+font-size: 25px;
+background-color: #ffffa6;
+}
+
+#pisValue {
+background-color: #ffffd9;
+}
+
+#coffinsValue {
+background-color: #ffffd9;
+}
+
+#calculoNValue {
+background-color: #ffffd9;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 8px 20px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+#rodape {
+  font-size: 12px;
+  margin: 0 auto; 
+  padding: 10px 0;  
+  width: fit-content; 
+  line-height: normal; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+}
+
+.imagens {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    padding-top: 30px;
+}
+
+.imagens img {
+    margin: 0 30px;
+    width: 100px;
+}
