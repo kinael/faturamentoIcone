@@ -76,9 +76,9 @@ button {
   justify-content: center; 
 }
 
-  input::placeholder {
+input::placeholder {
     font-size: 10px;
-  }
+}
 
 .imagens {
     display: flex;
