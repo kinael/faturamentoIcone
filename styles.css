@@ -1,9 +1,13 @@
 body {
   font-family: Arial, sans-serif;
-    font-size: 100%;
+    font-size: 112%;
     overflow: hidden;
     padding-bottom: 50px;
 background-color: #F5F5F5;
+}
+
+input[type=text] {
+width: 487px;
 }
 
 footer {
