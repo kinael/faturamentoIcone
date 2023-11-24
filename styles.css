@@ -1,5 +1,5 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: Andale Mono, monospace;
     font-size: 112%;
     overflow: hidden;
     padding-bottom: 50px;
@@ -29,11 +29,13 @@ footer {
 
 .container input, .container button {
     padding: 5px;
+    font-family: Andale Mono, monospace;
   }
 
 .titulopg {
 background-color: #90ee90;
     font-size: 1.8em;
+    margin-bottom: 40px;
 }
 
 #valorDesconto {
@@ -56,12 +58,12 @@ background-color: #ffffd9;
 input {
   width: 100%;
   padding: 8px;
-  margin-bottom: 10px;
+  margin-bottom: 18px;
 }
 
 button {
   padding: 8px 20px;
-  margin: 5px;
+  margin: 6px;
   cursor: pointer;
 }
 
