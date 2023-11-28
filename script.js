@@ -17,7 +17,6 @@ function calcularDesconto() {
     resultado.textContent = desconto.toFixed(2);
     valorDesconto.classList.remove('hidden');
 
-    // Exibindo os valores das variáveis
     pisResult.textContent = pis.toFixed(2);
     coffinsResult.textContent = coffins.toFixed(2);
     calculoNResult.textContent = calculo_N.toFixed(2);
@@ -29,7 +28,6 @@ function calcularDesconto() {
 }
 
 function limpar() {
-  // Limpa os campos de entrada
   document.getElementById('valorTotal').value = '';
   document.getElementById('valorTotalN').value = '';
 
