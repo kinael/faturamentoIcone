@@ -12,7 +12,7 @@ width: 487px;
 
 .hits-link {
     position: fixed;
-    bottom: 68px;
+    bottom: 65px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
