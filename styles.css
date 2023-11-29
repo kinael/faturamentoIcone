@@ -71,6 +71,14 @@ button {
   display: none;
 }
 
+.hits-link {
+    position: fixed;
+    bottom: [Altura do Rodapé]px; /* Substitua [Altura do Rodapé] pela altura do seu rodapé */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10; /* Garante que o link fique acima de outros elementos */
+}
+
 #rodape {
   font-size: 12px;
   margin: 0 auto; 
