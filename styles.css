@@ -10,6 +10,14 @@ input[type=text] {
 width: 487px;
 }
 
+.hits-link {
+    position: fixed;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
 footer {
     position: fixed; 
     bottom: 0;
@@ -69,14 +77,6 @@ button {
 
 .hidden {
   display: none;
-}
-
-.hits-link {
-    position: fixed;
-    bottom: [Altura do Rodapé]px; /* Substitua [Altura do Rodapé] pela altura do seu rodapé */
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10; /* Garante que o link fique acima de outros elementos */
 }
 
 #rodape {
