@@ -37,38 +37,51 @@ footer {
 background-color: #90ee90;
     font-size: 1.8em;
     margin-bottom: 40px;
+  border-radius: 10px; /* Arredondando o título */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 #valorDesconto {
 font-size: 25px;
 background-color: #ffffa6;
+  border-radius: 12px; /* Arredondando os resultados */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 #pisValue {
 background-color: #ffffd9;
+  border-radius: 12px; /* Arredondando os resultados */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 #coffinsValue {
 background-color: #ffffd9;
+  border-radius: 12px; /* Arredondando os resultados */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 #calculoNValue {
 background-color: #ffffd9;
+  border-radius: 12px; /* Arredondando os resultados */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 input {
   width: 100%;
   padding: 8px;
   margin-bottom: 18px;
+  border-radius: 5px; /* Arredondando os campos de entrada */
+  border: 1px solid #CCCCCC; /* Define uma borda mais clara */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 button {
   padding: 10px 20px;
   margin: 6px;
   cursor: pointer;
-  border-radius: 5px; 
+  border: 1px solid #CCCCCC; /* Define uma borda mais clara */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-
+  border-radius: 5px;
   transition: background-color 0.3s ease;
 }
 
@@ -79,6 +92,9 @@ button:hover {
 button:active {
   background-color: #A0A0A0;
 }
+
+/* Restante do seu CSS... */
+
 
 .hidden {
   display: none;
