@@ -114,12 +114,14 @@ input::placeholder {
 
 .botao-simples-nacional {
   text-align: center;
-  padding: 10px 0;
-  margin-top: 50px;
+  padding: 0 0;
+  margin-top: 5px;
 }
 
 .simples-nacional-btn {
-  padding: 10px 20px;
+  padding: 8px 16px;
+  margin-right: 4px;
+  margin-left: 4px; 
   background-color: #AFEEEE;
   color: black;
   text-decoration: none;
@@ -127,8 +129,21 @@ input::placeholder {
   box-shadow: 6px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
+.simples-nacional-btn:first-child {
+  margin-right: 10px;
+}
+
 .simples-nacional-btn:hover {
   background-color: #6495ED;
+}
+
+.linha {
+margin-top: 50px;
+}
+
+#links {
+    text-align: center;
+	font-size: 22px;
 }
 
 .imagens {
