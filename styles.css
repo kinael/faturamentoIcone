@@ -109,6 +109,7 @@ button:active {
 
 input::placeholder {
     font-size: 12px;
+  font-family: Gill Sans, sans-serif;
 }
 
 .botao-simples-nacional {
