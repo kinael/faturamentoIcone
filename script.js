@@ -31,7 +31,6 @@ function limpar() {
   document.getElementById('valorTotal').value = '';
   document.getElementById('valorTotalN').value = '';
 
-  // Limpa as variáveis e esconde os resultados
   document.getElementById('resultado').textContent = 'XXX,XXX';
   document.getElementById('pisResult').textContent = 'XXX,XXX';
   document.getElementById('coffinsResult').textContent = 'XXX,XXX';
