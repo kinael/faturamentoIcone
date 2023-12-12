@@ -27,6 +27,10 @@ function calcularDesconto() {
   }
 }
 
+function fecharMensagemRodape() {
+  document.getElementById('mensagemRodape').style.display = 'none';
+}
+
 function limpar() {
   document.getElementById('valorTotal').value = '';
   document.getElementById('valorTotalN').value = '';
