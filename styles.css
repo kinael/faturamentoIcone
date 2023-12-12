@@ -9,7 +9,7 @@ body {
 }
 
 #valorDesconto {
-font-size: 25px;
+  font-size: 25px;
 }
 
 input[type=text], button, select {
