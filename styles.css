@@ -5,7 +5,6 @@ body {
   padding-bottom: 50px;
   background-color: #FAFAFA;
   color: #333;
-  font-weight: bold;
 }
 
 #valorDesconto {
@@ -30,12 +29,13 @@ input[type=text], button, select {
 
 .titulopg {
   background-color: #1ABC9C;
-  color: black;
+  color: white;
   font-size: 2em;
   padding: 20px;
   margin-bottom: 30px;
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    font-weight: bold;
 }
 
 .info-box {
@@ -48,7 +48,7 @@ input[type=text], button, select {
 
 button {
   background-color: #1ABC9C;
-  color: black;
+  color: white;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
