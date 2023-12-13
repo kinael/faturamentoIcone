@@ -12,10 +12,7 @@ body {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
-}
-
-.container > * {
-  animation: slideIn 0.5s ease-out;
+  animation: fadeIn 1s ease-out;
 }
 
 .titulopg {
@@ -31,7 +28,7 @@ body {
 }
 
 #valorDesconto {
-font-size: 21px;
+  font-size: 21px;
 }
 
 input[type=text], button, select {
@@ -82,21 +79,8 @@ button:hover {
   to { opacity: 1; }
 }
 
-.animate-label {
-  animation: slideIn 0.5s ease-out;
-}
-
-.animate-text {
-  animation: slideIn 0.5s ease-out;
-}
-
-@keyframes slideIn {
-  from { transform: translateY(-20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-.animated {
-  animation: fadeIn 0.5s ease-out;
+.animate-text, .animate-label, .animated, .simples-nacional-btn {
+  animation: fadeIn 1s ease-out;
 }
 
 .botao-simples-nacional {
@@ -116,15 +100,12 @@ button:hover {
   margin: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s, transform 0.3s;
+  animation: fadeIn 1s ease-out;
 }
 
 .simples-nacional-btn:hover {
   background-color: #2980B9;
   transform: translateY(-5px);
-}
-
-.animate-text {
-  animation: fadeIn 1s ease-out;
 }
 
 .imagens {
