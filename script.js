@@ -16,7 +16,6 @@ function calcularDesconto() {
     var desconto = pis + coffins + calculo_N;
     resultado.textContent = desconto.toFixed(2);
     valorDesconto.classList.remove('hidden');
-
     pisResult.textContent = pis.toFixed(2);
     coffinsResult.textContent = coffins.toFixed(2);
     calculoNResult.textContent = calculo_N.toFixed(2);
@@ -24,11 +23,11 @@ function calcularDesconto() {
     document.getElementById('pisValue').classList.remove('hidden');
     document.getElementById('coffinsValue').classList.remove('hidden');
     document.getElementById('calculoNValue').classList.remove('hidden');
-  }
-}
 
-function fecharMensagemRodape() {
-  document.getElementById('mensagemRodape').style.display = 'none';
+    document.querySelectorAll('#valorDesconto, #pisValue, #coffinsValue, #calculoNValue').forEach(el => {
+      el.classList.add('animated');
+    });
+  }
 }
 
 function limpar() {
@@ -44,4 +43,8 @@ function limpar() {
   document.getElementById('pisValue').classList.add('hidden');
   document.getElementById('coffinsValue').classList.add('hidden');
   document.getElementById('calculoNValue').classList.add('hidden');
+
+  document.querySelectorAll('#valorDesconto, #pisValue, #coffinsValue, #calculoNValue').forEach(el => {
+    el.classList.remove('animated');
+  });
 }
