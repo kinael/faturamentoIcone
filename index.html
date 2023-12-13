@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,12 +16,13 @@
 
 
 <div class="container">
-  <h1 class="titulopg">Calculadora Suframa</h1>
-  <label for="valorTotal"> <b> Valor total da ordem: </b> </label>
-  <input type="text" id="valorTotal" placeholder="Ex.: 2800 ou 2800.99 (com ponto)">
+  <h1 class="titulopg animate-text">Calculadora Suframa</h1>
 
-  <label for="valorTotalN"> <b> Valor dos produtos NACIONAIS: </b> </label>
-  <input type="text" id="valorTotalN" placeholder="Ex.: 600 ou 600.99 (com ponto)">
+  <label for="valorTotal" class="animate-text"> <b> Valor total da ordem: </b> </label>
+<input type="text" id="valorTotal" placeholder="Ex.: 2800 ou 2800.99 (com ponto)">
+
+<label for="valorTotalN" class="animate-text"> <b> Valor dos produtos NACIONAIS: </b> </label>
+<input type="text" id="valorTotalN" placeholder="Ex.: 600 ou 600.99 (com ponto)">
 
   <button onclick="calcularDesconto()">Concluir</button>
   <button onclick="limpar()">Limpar</button>
@@ -33,7 +35,7 @@
 </div>
 
 <hr class="linha" style="max-width: 800px;">
-<h1 id="links" > Links Externos: </h1>
+<h1 id="links">Links Externos:</h1>
 <div class="botao-simples-nacional">
 </br>
   <a href="https://www8.receita.fazenda.gov.br/SimplesNacional/aplicacoes.aspx?id=21" target="_blank" class="simples-nacional-btn">Consulta Simples Nacional</a>
