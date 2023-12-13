@@ -5,10 +5,33 @@ body {
   padding-bottom: 50px;
   background-color: #FAFAFA;
   color: #333;
+  animation: fadeIn 1s ease-out;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.container > * {
+  animation: slideIn 0.5s ease-out;
+}
+
+.titulopg {
+  background-color: #1ABC9C;
+  color: white;
+  font-size: 2em;
+  padding: 20px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+  animation: fadeIn 1s ease-out;
 }
 
 #valorDesconto {
-  font-size: 25px;
+font-size: 21px;
 }
 
 input[type=text], button, select {
@@ -21,29 +44,15 @@ input[type=text], button, select {
   box-sizing: border-box;
 }
 
-.container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
+#links {
+  text-align: center;
+  font-size: 24px;
 }
 
-.titulopg {
-  background-color: #1ABC9C;
-  color: white;
-  font-size: 2em;
-  padding: 20px;
-  margin-bottom: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    font-weight: bold;
-}
-
-.info-box {
-  background-color: #ECF0F1;
-  border-radius: 10px;
-  padding: 15px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+input[type=text]:focus {
+  outline: none;
+  border: 2px solid #1ABC9C;
+  box-shadow: 0 0 8px #1ABC9C;
 }
 
 button {
@@ -56,22 +65,38 @@ button {
   cursor: pointer;
   box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2);
   font-weight: bold;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 button:hover {
   background-color: #16A085;
+  transform: scale(1.05);
 }
 
 .hidden {
   display: none;
 }
 
-#rodape {
-  font-size: 14px;
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-input::placeholder {
-  font-size: 14px;
+.animate-label {
+  animation: slideIn 0.5s ease-out;
+}
+
+.animate-text {
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animated {
+  animation: fadeIn 0.5s ease-out;
 }
 
 .botao-simples-nacional {
@@ -90,20 +115,16 @@ input::placeholder {
   display: inline-block;
   margin: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .simples-nacional-btn:hover {
   background-color: #2980B9;
+  transform: translateY(-5px);
 }
 
-.linha {
-  margin-top: 10px;
-  max-width: 800px;
-}
-
-#links {
-  text-align: center;
-  font-size: 24px;
+.animate-text {
+  animation: fadeIn 1s ease-out;
 }
 
 .imagens {
@@ -112,7 +133,6 @@ input::placeholder {
   align-items: center;
   padding-top: 30px;
 }
-
 
 .imagens img {
   margin: 0 30px;
