@@ -39,11 +39,13 @@ input[type=text], button, select {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  animation: fadeIn 1s ease-out;
 }
 
 #links {
   text-align: center;
   font-size: 24px;
+  animation: fadeIn 1s ease-out;
 }
 
 input[type=text]:focus {
@@ -63,6 +65,7 @@ button {
   box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2);
   font-weight: bold;
   transition: background-color 0.3s, transform 0.3s;
+  animation: fadeIn 1s ease-out;
 }
 
 button:hover {
@@ -113,10 +116,12 @@ button:hover {
   justify-content: center;
   align-items: center;
   padding-top: 30px;
+  animation: fadeIn 1s ease-out;
 }
 
 .imagens img {
   margin: 0 30px;
   max-width: 100px;
   height: auto;
+  animation: fadeIn 1s ease-out;
 }
