@@ -1,3 +1,32 @@
+var historicoCalculos = [];
+
+function formatarDataHora() {
+  var agora = new Date();
+  return agora.toLocaleDateString('pt-BR') + ' ' + agora.toLocaleTimeString('pt-BR');
+}
+
+function atualizarHistorico() {
+  var lista = document.getElementById('historicoLista');
+  lista.innerHTML = '';
+  historicoCalculos.forEach(function(item, index) {
+    var li = document.createElement('li');
+    li.innerHTML = `<span class="valor">${item.valor}</span> <span class="data">${item.data}</span>`;
+    li.classList.add(index === 0 ? 'ultimo-calculo' : 'calculo-anterior');
+    lista.appendChild(li);
+  });
+}
+
+function adicionarAoHistorico(valor) {
+  var dataHoraAtual = formatarDataHora();
+  historicoCalculos.unshift({ valor: 'R$ ' + valor, data: dataHoraAtual });
+  if (historicoCalculos.length > 5) {
+    historicoCalculos.pop();
+  }
+  atualizarHistorico();
+  salvarHistorico();
+  document.querySelector('.historico').style.display = 'block';
+}
+
 function calcularDesconto() {
   var valorTotal = parseFloat(document.getElementById('valorTotal').value);
   var valorTotalN = parseFloat(document.getElementById('valorTotalN').value);
@@ -27,6 +56,8 @@ function calcularDesconto() {
     document.querySelectorAll('#valorDesconto, #pisValue, #coffinsValue, #calculoNValue').forEach(el => {
       el.classList.add('animated');
     });
+
+    adicionarAoHistorico(desconto.toFixed(2));
   }
 }
 
@@ -48,3 +79,58 @@ function limpar() {
     el.classList.remove('animated');
   });
 }
+
+function limparHistorico() {
+  historicoCalculos = [];
+  salvarHistorico();
+  atualizarHistorico();
+}
+
+function salvarHistorico() {
+  localStorage.setItem('historicoCalculos', JSON.stringify(historicoCalculos));
+}
+
+function carregarHistorico() {
+  var historicoSalvo = localStorage.getItem('historicoCalculos');
+  if (historicoSalvo) {
+    historicoCalculos = JSON.parse(historicoSalvo);
+    atualizarHistorico();
+    document.querySelector('.historico').style.display = 'block';
+  }
+}
+
+function adicionarBotaoMinimizar() {
+  var tituloHistorico = document.querySelector('.titulo-historico');
+  var botaoMinimizar = document.createElement('button');
+  botaoMinimizar.id = 'toggleHistorico';
+  botaoMinimizar.title = 'Minimizar o histórico';
+  botaoMinimizar.textContent = '-';
+  tituloHistorico.appendChild(botaoMinimizar);
+
+  botaoMinimizar.addEventListener('click', function() {
+    var infoHistorico = document.getElementById('infoHistorico');
+    var historicoLista = document.getElementById('historicoLista');
+    var isHistoricoVisible = infoHistorico.style.visibility !== 'hidden';
+
+    infoHistorico.style.visibility = isHistoricoVisible ? 'hidden' : 'visible';
+    infoHistorico.style.height = isHistoricoVisible ? '0' : 'auto';
+
+    historicoLista.style.visibility = isHistoricoVisible ? 'hidden' : 'visible';
+    historicoLista.style.height = isHistoricoVisible ? '0' : 'auto';
+
+    this.title = isHistoricoVisible ? 'Maximizar o histórico' : 'Minimizar o histórico';
+    this.textContent = isHistoricoVisible ? '+' : '-';
+  });
+}
+
+adicionarBotaoMinimizar();
+
+document.getElementById('limparHistorico').addEventListener('click', function() {
+  if (confirm("Tem certeza que deseja limpar o histórico?")) {
+    limparHistorico();
+  }
+});
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  carregarHistorico();
+});
