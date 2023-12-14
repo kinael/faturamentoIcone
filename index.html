@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,15 +13,14 @@
     <img src="https://i.imgur.com/550j2sx.png" />
 </div>
 
-
 <div class="container">
   <h1 class="titulopg animate-text">Calculadora Suframa</h1>
 
   <label for="valorTotal" class="animate-text"> <b> Valor total da ordem: </b> </label>
-<input type="text" id="valorTotal" placeholder="Ex.: 2800 ou 2800.99 (com ponto)">
+  <input type="text" id="valorTotal" placeholder="Ex.: 2800 ou 2800.99 (com ponto)">
 
-<label for="valorTotalN" class="animate-text"> <b> Valor dos produtos NACIONAIS: </b> </label>
-<input type="text" id="valorTotalN" placeholder="Ex.: 600 ou 600.99 (com ponto)">
+  <label for="valorTotalN" class="animate-text"> <b> Valor dos produtos NACIONAIS: </b> </label>
+  <input type="text" id="valorTotalN" placeholder="Ex.: 600 ou 600.99 (com ponto)">
 
   <button onclick="calcularDesconto()">Concluir</button>
   <button onclick="limpar()">Limpar</button>
@@ -31,7 +29,18 @@
   <p id="pisValue" class="hidden"> <b> PIS: </b> R$ <span id="pisResult">XXX,XXX</span></p>
   <p id="coffinsValue" class="hidden"> <b> Cofins: </b> R$ <span id="coffinsResult">XXX,XXX</span></p>
   <p id="calculoNValue" class="hidden"> <b> ICMS: </b> R$ <span id="calculoNResult">XXX,XXX</span></p>
+</div>
 
+<div class="historico">
+  <div class="titulo-historico">
+    <h2>Histórico de Descontos</h2>
+  </div>
+  <p id="infoHistorico">Estes são os 5 últimos descontos calculados:</p>
+  <ul id="historicoLista"></ul>
+  <div id="historicoFooter">
+
+    <button id="limparHistorico" title="Limpar histórico">Limpar histórico</button>
+  </div>
 </div>
 
 <hr class="linha" style="max-width: 800px;">
