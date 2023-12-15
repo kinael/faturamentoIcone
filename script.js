@@ -108,19 +108,22 @@ function adicionarBotaoMinimizar() {
   tituloHistorico.appendChild(botaoMinimizar);
 
   botaoMinimizar.addEventListener('click', function() {
-    var infoHistorico = document.getElementById('infoHistorico');
-    var historicoLista = document.getElementById('historicoLista');
-    var isHistoricoVisible = infoHistorico.style.visibility !== 'hidden';
+  var infoHistorico = document.getElementById('infoHistorico');
+  var historicoLista = document.getElementById('historicoLista');
+  var limparHistoricoBtn = document.getElementById('limparHistorico');
+  var isHistoricoVisible = infoHistorico.style.visibility !== 'hidden';
 
-    infoHistorico.style.visibility = isHistoricoVisible ? 'hidden' : 'visible';
-    infoHistorico.style.height = isHistoricoVisible ? '0' : 'auto';
+  infoHistorico.style.visibility = isHistoricoVisible ? 'hidden' : 'visible';
+  infoHistorico.style.height = isHistoricoVisible ? '0' : 'auto';
 
-    historicoLista.style.visibility = isHistoricoVisible ? 'hidden' : 'visible';
-    historicoLista.style.height = isHistoricoVisible ? '0' : 'auto';
+  historicoLista.style.visibility = isHistoricoVisible ? 'hidden' : 'visible';
+  historicoLista.style.height = isHistoricoVisible ? '0' : 'auto';
 
-    this.title = isHistoricoVisible ? 'Maximizar o histórico' : 'Minimizar o histórico';
-    this.textContent = isHistoricoVisible ? '+' : '-';
-  });
+  limparHistoricoBtn.style.display = isHistoricoVisible ? 'none' : 'block';
+
+  this.title = isHistoricoVisible ? 'Maximizar o histórico' : 'Minimizar o histórico';
+  this.textContent = isHistoricoVisible ? '+' : '-';
+});
 }
 
 adicionarBotaoMinimizar();
