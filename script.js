@@ -5,6 +5,23 @@ function formatarDataHora() {
   return agora.toLocaleDateString('pt-BR') + ' ' + agora.toLocaleTimeString('pt-BR');
 }
 
+function adicionarAoHistorico(valor, pis, coffins, calculoN) {
+  var dataHoraAtual = formatarDataHora();
+  historicoCalculos.unshift({ valor: 'R$ ' + valor, data: dataHoraAtual, pis: pis, coffins: coffins, calculoN: calculoN });
+  if (historicoCalculos.length > 5) {
+    historicoCalculos.pop();
+  }
+  atualizarHistorico();
+  salvarHistorico();
+  document.querySelector('.historico').style.display = 'block';
+}
+
+function exibirDetalhesHistorico(index) {
+  var historicoItem = historicoCalculos[index];
+  var mensagem = `PIS: ${historicoItem.pis}\nCOFINS: ${historicoItem.coffins}\nICMS: ${historicoItem.calculoN}`;
+  alert(mensagem);
+}
+
 function atualizarHistorico() {
   var lista = document.getElementById('historicoLista');
   lista.innerHTML = '';
@@ -12,19 +29,11 @@ function atualizarHistorico() {
     var li = document.createElement('li');
     li.innerHTML = `<span class="valor">${item.valor}</span> <span class="data">${item.data}</span>`;
     li.classList.add(index === 0 ? 'ultimo-calculo' : 'calculo-anterior');
+    li.addEventListener('click', function() {
+      exibirDetalhesHistorico(index);
+    });
     lista.appendChild(li);
   });
-}
-
-function adicionarAoHistorico(valor) {
-  var dataHoraAtual = formatarDataHora();
-  historicoCalculos.unshift({ valor: 'R$ ' + valor, data: dataHoraAtual });
-  if (historicoCalculos.length > 5) {
-    historicoCalculos.pop();
-  }
-  atualizarHistorico();
-  salvarHistorico();
-  document.querySelector('.historico').style.display = 'block';
 }
 
 function calcularDesconto() {
@@ -57,7 +66,7 @@ function calcularDesconto() {
       el.classList.add('animated');
     });
 
-    adicionarAoHistorico(desconto.toFixed(2));
+    adicionarAoHistorico(desconto.toFixed(2), pis.toFixed(2), coffins.toFixed(2), calculo_N.toFixed(2));
   }
 }
 
@@ -108,22 +117,22 @@ function adicionarBotaoMinimizar() {
   tituloHistorico.appendChild(botaoMinimizar);
 
   botaoMinimizar.addEventListener('click', function() {
-  var infoHistorico = document.getElementById('infoHistorico');
-  var historicoLista = document.getElementById('historicoLista');
-  var limparHistoricoBtn = document.getElementById('limparHistorico');
-  var isHistoricoVisible = infoHistorico.style.visibility !== 'hidden';
+    var infoHistorico = document.getElementById('infoHistorico');
+    var historicoLista = document.getElementById('historicoLista');
+    var limparHistoricoBtn = document.getElementById('limparHistorico');
+    var isHistoricoVisible = infoHistorico.style.visibility !== 'hidden';
 
-  infoHistorico.style.visibility = isHistoricoVisible ? 'hidden' : 'visible';
-  infoHistorico.style.height = isHistoricoVisible ? '0' : 'auto';
+    infoHistorico.style.visibility = isHistoricoVisible ? 'hidden' : 'visible';
+    infoHistorico.style.height = isHistoricoVisible ? '0' : 'auto';
 
-  historicoLista.style.visibility = isHistoricoVisible ? 'hidden' : 'visible';
-  historicoLista.style.height = isHistoricoVisible ? '0' : 'auto';
+    historicoLista.style.visibility = isHistoricoVisible ? 'hidden' : 'visible';
+    historicoLista.style.height = isHistoricoVisible ? '0' : 'auto';
 
-  limparHistoricoBtn.style.display = isHistoricoVisible ? 'none' : 'block';
+    limparHistoricoBtn.style.display = isHistoricoVisible ? 'none' : 'block';
 
-  this.title = isHistoricoVisible ? 'Maximizar o histórico' : 'Minimizar o histórico';
-  this.textContent = isHistoricoVisible ? '+' : '-';
-});
+    this.title = isHistoricoVisible ? 'Maximizar o histórico' : 'Minimizar o histórico';
+    this.textContent = isHistoricoVisible ? '+' : '-';
+  });
 }
 
 adicionarBotaoMinimizar();
