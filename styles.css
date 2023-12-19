@@ -227,3 +227,23 @@ button:hover {
   margin: 0;
   flex-grow: 1;
 }
+
+.historico ul li:hover {
+  background-color: #3498DB;
+  color: white;
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.historico ul li:hover .valor {
+  color: white;
+}
+
+.historico ul li:hover .data {
+  color: white;
+}
+
+.historico ul li:hover::before {
+  font-size: 1.5em;
+  margin-right: 5px;
+}
