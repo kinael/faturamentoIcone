@@ -162,7 +162,9 @@ function adicionarBotaoMinimizar() {
   });
 }
 
+
 adicionarBotaoMinimizar();
+
 
 document.getElementById('limparHistorico').addEventListener('click', function() {
   if (confirm("Tem certeza que deseja limpar o histórico?")) {
