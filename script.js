@@ -1,4 +1,5 @@
 var historicoCalculos = [];
+var modoEscuroAtivado = false;
 
 function formatarDataHora() {
   var agora = new Date();
@@ -97,6 +98,15 @@ function limparHistorico() {
 
 function salvarHistorico() {
   localStorage.setItem('historicoCalculos', JSON.stringify(historicoCalculos));
+}
+
+function alternarModo() {
+  var body = document.body;
+  modoEscuroAtivado = !modoEscuroAtivado;
+  body.classList.toggle('dark-mode', modoEscuroAtivado);
+
+  var modoEscuroBtn = document.querySelector('.modo-escuro-btn');
+  modoEscuroBtn.textContent = modoEscuroAtivado ? 'Modo Claro' : 'Modo Escuro';
 }
 
 function carregarHistorico() {
