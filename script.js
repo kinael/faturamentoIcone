@@ -26,11 +26,11 @@ function exibirDetalhesHistorico(index) {
 function atualizarHistorico() {
   var lista = document.getElementById('historicoLista');
   lista.innerHTML = '';
-  historicoCalculos.forEach(function(item, index) {
+  historicoCalculos.forEach(function (item, index) {
     var li = document.createElement('li');
     li.innerHTML = `<span class="valor">${item.valor}</span> <span class="data">${item.data}</span>`;
     li.classList.add(index === 0 ? 'ultimo-calculo' : 'calculo-anterior');
-    li.addEventListener('click', function() {
+    li.addEventListener('click', function () {
       exibirDetalhesHistorico(index);
     });
     lista.appendChild(li);
@@ -100,13 +100,8 @@ function salvarHistorico() {
   localStorage.setItem('historicoCalculos', JSON.stringify(historicoCalculos));
 }
 
-function alternarModo() {
-  var body = document.body;
-  modoEscuroAtivado = !modoEscuroAtivado;
-  body.classList.toggle('dark-mode', modoEscuroAtivado);
-
-  var modoEscuroBtn = document.querySelector('.modo-escuro-btn');
-  modoEscuroBtn.textContent = modoEscuroAtivado ? 'Modo Claro' : 'Modo Escuro';
+function salvarModoEscuro() {
+  localStorage.setItem('modoEscuro', modoEscuroAtivado);
 }
 
 function carregarHistorico() {
@@ -118,6 +113,28 @@ function carregarHistorico() {
   }
 }
 
+function carregarModoEscuro() {
+  var modoEscuroSalvo = localStorage.getItem('modoEscuro');
+  if (modoEscuroSalvo !== null) {
+    modoEscuroAtivado = JSON.parse(modoEscuroSalvo);
+    aplicarModoEscuro();
+  }
+}
+
+function aplicarModoEscuro() {
+  var body = document.body;
+  body.classList.toggle('dark-mode', modoEscuroAtivado);
+
+  var modoEscuroBtn = document.querySelector('.modo-escuro-btn');
+  modoEscuroBtn.textContent = modoEscuroAtivado ? 'Modo Claro' : 'Modo Escuro';
+}
+
+function alternarModo() {
+  modoEscuroAtivado = !modoEscuroAtivado;
+  salvarModoEscuro();
+  aplicarModoEscuro();
+}
+
 function adicionarBotaoMinimizar() {
   var tituloHistorico = document.querySelector('.titulo-historico');
   var botaoMinimizar = document.createElement('button');
@@ -126,7 +143,7 @@ function adicionarBotaoMinimizar() {
   botaoMinimizar.textContent = '-';
   tituloHistorico.appendChild(botaoMinimizar);
 
-  botaoMinimizar.addEventListener('click', function() {
+  botaoMinimizar.addEventListener('click', function () {
     var infoHistorico = document.getElementById('infoHistorico');
     var historicoLista = document.getElementById('historicoLista');
     var limparHistoricoBtn = document.getElementById('limparHistorico');
@@ -147,7 +164,7 @@ function adicionarBotaoMinimizar() {
 
 adicionarBotaoMinimizar();
 
-document.getElementById('limparHistorico').addEventListener('click', function() {
+document.getElementById('limparHistorico').addEventListener('click', function () {
   if (confirm("Tem certeza que deseja limpar o histórico?")) {
     limparHistorico();
   }
@@ -155,4 +172,5 @@ document.getElementById('limparHistorico').addEventListener('click', function() 
 
 document.addEventListener('DOMContentLoaded', (event) => {
   carregarHistorico();
+  carregarModoEscuro();
 });
