@@ -6,9 +6,13 @@ function formatarDataHora() {
   return agora.toLocaleDateString('pt-BR') + ' ' + agora.toLocaleTimeString('pt-BR');
 }
 
+function formatarMoeda(valor) {
+  return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(valor);
+}
+
 function adicionarAoHistorico(valor, pis, coffins, calculoN) {
   var dataHoraAtual = formatarDataHora();
-  historicoCalculos.unshift({ valor: 'R$ ' + valor, data: dataHoraAtual, pis: pis, coffins: coffins, calculoN: calculoN });
+  historicoCalculos.unshift({ valor: formatarMoeda(valor), data: dataHoraAtual, pis: formatarMoeda(pis), coffins: formatarMoeda(coffins), calculoN: formatarMoeda(calculoN) });
   if (historicoCalculos.length > 5) {
     historicoCalculos.pop();
   }
@@ -53,11 +57,11 @@ function calcularDesconto() {
     var calculo_N = valorTotalN * 0.07;
 
     var desconto = pis + coffins + calculo_N;
-    resultado.textContent = desconto.toFixed(2);
+    resultado.textContent = formatarMoeda(desconto);
     valorDesconto.classList.remove('hidden');
-    pisResult.textContent = pis.toFixed(2);
-    coffinsResult.textContent = coffins.toFixed(2);
-    calculoNResult.textContent = calculo_N.toFixed(2);
+    pisResult.textContent = formatarMoeda(pis);
+    coffinsResult.textContent = formatarMoeda(coffins);
+    calculoNResult.textContent = formatarMoeda(calculo_N);
 
     document.getElementById('pisValue').classList.remove('hidden');
     document.getElementById('coffinsValue').classList.remove('hidden');
@@ -67,7 +71,7 @@ function calcularDesconto() {
       el.classList.add('animated');
     });
 
-    adicionarAoHistorico(desconto.toFixed(2), pis.toFixed(2), coffins.toFixed(2), calculo_N.toFixed(2));
+    adicionarAoHistorico(desconto, pis, coffins, calculo_N);
   }
 }
 
@@ -162,9 +166,7 @@ function adicionarBotaoMinimizar() {
   });
 }
 
-
 adicionarBotaoMinimizar();
-
 
 document.getElementById('limparHistorico').addEventListener('click', function() {
   if (confirm("Tem certeza que deseja limpar o histórico?")) {
