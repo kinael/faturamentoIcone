@@ -8,6 +8,13 @@ body {
   animation: fadeIn 1s ease-out;
 }
 
+footer {
+text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+margin-top: 56px;
+font-size: 15px;
+}
+
 .container {
   max-width: 600px;
   margin: 0 auto;
