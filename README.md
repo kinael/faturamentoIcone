@@ -7,4 +7,4 @@
   - Oferece recursos adicionais, como a visualização do histórico de cálculos recentes, modo escuro e links úteis para consultar situações cadastrais de clientes;
 - **Exclusividade:** Originalmente desenvolvida para uso exclusivo da Ícone Comercial, situada em Pomerode, Santa Catarina.
 
-### Para analisar na prática, basta acessar o link via Github Pages: https://kinael.github.io/descontoSuframa/
+### Para analisar na prática, basta acessar o link via Github Pages: https://kinael.github.io/faturaicone-suframa/
