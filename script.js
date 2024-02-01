@@ -51,6 +51,11 @@ function calcularDesconto() {
     var coffinsResult = document.getElementById('coffinsResult');
     var calculoNResult = document.getElementById('calculoNResult');
 
+      if (isNaN(valorTotal) || isNaN(valorTotalN)) {
+        alert('Preencha todos os campos corretamente.');
+          return false;
+    }
+
     if (!isNaN(valorTotal) && !isNaN(valorTotalN)) {
         var pis = valorTotal * 0.0165;
         var coffins = valorTotal * 0.076;
