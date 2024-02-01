@@ -1,4 +1,4 @@
-# Calculadora Suframa 
+# Cálculo de Desconto para clientes Suframa
 
 **Descrição:**
 - **Propósito:** Ferramenta desenvolvida para calcular o desconto aplicado em pedidos de clientes pertencentes à ZFM (Zona Franca de Manaus), quando a ordem de venda possuir produtos nacionais e importados, além de estar verificado que o cliente possui direito a este benefício.
