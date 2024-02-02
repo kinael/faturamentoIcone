@@ -4,6 +4,10 @@ body.dark-mode {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.modal {
+color: black;
+}
+
 .container.dark-mode {
   background-color: #1E1E1E;
   color: #fff;
