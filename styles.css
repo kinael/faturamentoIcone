@@ -8,6 +8,10 @@ body {
   animation: fadeIn 1s ease-out;
 }
 
+#iconimg {
+    margin-top: -3px;
+}
+
 .modal {
     display: none; 
     position: fixed; 
