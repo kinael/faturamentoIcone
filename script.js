@@ -1,6 +1,16 @@
 var historicoCalculos = [];
 var modoEscuroAtivado = false;
 
+function exibirModalSobre() {
+    var modalSobre = document.getElementById('modalSobre');
+    modalSobre.style.display = 'block';
+}
+
+function fecharModalSobre() {
+    var modalSobre = document.getElementById('modalSobre');
+    modalSobre.style.display = 'none';
+}
+
 function formatarDataHora() {
   var agora = new Date();
   return agora.toLocaleDateString('pt-BR') + ' ' + agora.toLocaleTimeString('pt-BR');
