@@ -37,8 +37,8 @@ input[type=text].dark-mode:focus {
 }
 
 button.dark-mode {
-  background-color: #1ABC9C;
-  color: #fff;
+  background-color: #fff;
+  color: black;
   padding: 12px 20px;
   margin: 8px 0;
   border: none;
