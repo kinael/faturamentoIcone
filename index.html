@@ -6,6 +6,90 @@
 <title>ENM - Cálculo de Desconto para Clientes Suframa</title>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="dark-mode.css" id="dark-mode-stylesheet">
+<style>
+    .calculator {
+color: black;
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        border: 2px solid #ccc;
+        padding: 15px;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        width: 230px;
+        display: none; 
+    }
+    .calculator-screen {
+        width: 100%;
+        height: 60px;
+        background-color: #f4f4f4;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        text-align: right;
+        padding: 10px;
+        font-size: 28px; 
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+    .calculator-buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 5px;
+    }
+    .calculator-button {
+        width: 100%;
+        height: 60px; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        background-color: #e0e0e0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.2s, transform 0.2s;
+    }
+    .calculator-button:hover {
+        background-color: #d0d0d0;
+    }
+    .calculator-button:active {
+        transform: scale(0.98);
+    }
+    .calculator-button.operator {
+        background-color: #fe9241;
+        color: black;
+    }
+    .calculator-button.double {
+        grid-column: span 2;
+    }
+    .calculator-button.double-operator {
+        grid-column: span 4;
+    }
+
+    .toggle-calculator {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        background-color: #fe9241;
+        color: black;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        transition: background-color 0.2s;
+    }
+    .toggle-calculator:hover {
+        background-color: #e07b34;
+    }
+</style>
 </head>
 <body>
 
@@ -38,7 +122,6 @@
   <p id="infoHistorico">Estes são os últimos 5 descontos calculados:</p>
   <ul id="historicoLista"></ul>
   <div id="historicoFooter">
-
     <button id="limparHistorico" title="Limpar histórico">Limpar histórico</button>
   </div>
 </div>
@@ -63,6 +146,114 @@
     <p>Última atualização: 02/02/2024 </p>
   </div>
 </div>
+
+<!-- Calculadora -->
+<div class="calculator" id="calculator">
+    <div class="calculator-screen" id="calculator-screen">0</div>
+    <div class="calculator-buttons">
+        <div class="calculator-button" onclick="appendNumber('7')">7</div>
+        <div class="calculator-button" onclick="appendNumber('8')">8</div>
+        <div class="calculator-button" onclick="appendNumber('9')">9</div>
+        <div class="calculator-button operator" onclick="setOperator('/')">/</div>
+        <div class="calculator-button" onclick="appendNumber('4')">4</div>
+        <div class="calculator-button" onclick="appendNumber('5')">5</div>
+        <div class="calculator-button" onclick="appendNumber('6')">6</div>
+        <div class="calculator-button operator" onclick="setOperator('*')">*</div>
+        <div class="calculator-button" onclick="appendNumber('1')">1</div>
+        <div class="calculator-button" onclick="appendNumber('2')">2</div>
+        <div class="calculator-button" onclick="appendNumber('3')">3</div>
+        <div class="calculator-button operator" onclick="setOperator('-')">-</div>
+        <div class="calculator-button double" onclick="appendNumber('0')">0</div>
+        <div class="calculator-button" onclick="appendNumber('.')">.</div>
+        <div class="calculator-button operator" onclick="setOperator('+')">+</div>
+        <div class="calculator-button double-operator" onclick="calculateResult()">=</div>
+        <div class="calculator-button double-operator" onclick="clearScreen()">C</div>
+    </div>
+</div>
+
+<!-- Botão de abrir/fechar calculadora -->
+<button class="toggle-calculator" onclick="toggleCalculator()">&#x1F522;</button> <!-- Ícone de calculadora -->
+
+<script>
+    let currentInput = '';
+    let operator = null;
+    let firstOperand = null;
+
+    function appendNumber(number) {
+        if (currentInput === '0' && number !== '.') {
+            currentInput = number;
+        } else {
+            currentInput += number;
+        }
+        updateScreen();
+    }
+
+    function setOperator(op) {
+        if (operator !== null) {
+            calculateResult();
+        }
+        firstOperand = parseFloat(currentInput);
+        operator = op;
+        currentInput = '';
+    }
+
+    function calculateResult() {
+        if (operator === null || currentInput === '') return;
+        const secondOperand = parseFloat(currentInput);
+        let result;
+        switch (operator) {
+            case '+':
+                result = firstOperand + secondOperand;
+                break;
+            case '-':
+                result = firstOperand - secondOperand;
+                break;
+            case '*':
+                result = firstOperand * secondOperand;
+                break;
+            case '/':
+                result = firstOperand / secondOperand;
+                break;
+            default:
+                return;
+        }
+        currentInput = result.toString();
+        operator = null;
+        firstOperand = null;
+        updateScreen();
+    }
+
+    function clearScreen() {
+        currentInput = '';
+        operator = null;
+        firstOperand = null;
+        updateScreen();
+    }
+
+    function updateScreen() {
+        document.getElementById('calculator-screen').innerText = currentInput || '0';
+    }
+
+    function toggleCalculator() {
+        const calculator = document.getElementById('calculator');
+        const isVisible = calculator.style.display === 'block';
+        calculator.style.display = isVisible ? 'none' : 'block';
+    }
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key >= '0' && event.key <= '9') {
+            appendNumber(event.key);
+        } else if (event.key === '.' || event.key === ',') {
+            appendNumber('.');
+        } else if (event.key === '+' || event.key === '-' || event.key === '*' || event.key === '/') {
+            setOperator(event.key);
+        } else if (event.key === 'Enter') {
+            calculateResult();
+        } else if (event.key === 'Escape') {
+            clearScreen();
+        }
+    });
+</script>
 
 <script src="script.js"></script>
 </body>
