@@ -52,43 +52,50 @@ function atualizarHistorico() {
 }
 
 function calcularDesconto() {
-    var valorTotal = parseFloat(document.getElementById('valorTotal').value.replace('.', '').replace(',', '.'));
-    var valorTotalN = parseFloat(document.getElementById('valorTotalN').value.replace('.', '').replace(',', '.'));
+    // Obter os valores dos inputs
+    var valorTotal = parseFloat(document.getElementById('valorTotal').value.replace(',', '.'));
+    var valorNacionais = parseFloat(document.getElementById('valorTotalN').value.replace(',', '.'));
 
-    var resultado = document.getElementById('resultado');
-    var valorDesconto = document.getElementById('valorDesconto');
-    var pisResult = document.getElementById('pisResult');
-    var coffinsResult = document.getElementById('coffinsResult');
-    var calculoNResult = document.getElementById('calculoNResult');
+    // Cálculos dos impostos existentes
+    var pis = valorTotal * 0.0065;
+    var coffins = valorTotal * 0.03;
+    var icms = valorNacionais * 0.12;
 
-      if (isNaN(valorTotal) || isNaN(valorTotalN)) {
-        alert('Preencha todos os campos corretamente.');
-          return false;
-    }
+    // Cálculo de novos valores
+    var totalImportados = valorTotal - valorNacionais;
+    var totalICMS = totalImportados * 0.04;
 
-    if (!isNaN(valorTotal) && !isNaN(valorTotalN)) {
-        var pis = valorTotal * 0.0165;
-        var coffins = valorTotal * 0.076;
-        var calculo_N = valorTotalN * 0.07;
+    // Formatação dos valores
+    var pisFormatado = formatarMoeda(pis);
+    var coffinsFormatado = formatarMoeda(coffins);
+    var icmsFormatado = formatarMoeda(icms);
+    var totalImportadosFormatado = formatarMoeda(totalImportados);
+    var totalICMSFormatado = formatarMoeda(totalICMS);
 
-        var desconto = pis + coffins + calculo_N;
-        resultado.textContent = formatarMoeda(desconto);
-        valorDesconto.classList.remove('hidden');
-        pisResult.textContent = formatarMoeda(pis);
-        coffinsResult.textContent = formatarMoeda(coffins);
-        calculoNResult.textContent = formatarMoeda(calculo_N);
+    // Exibir os resultados
+    document.getElementById('pisResult').innerText = pisFormatado;
+    document.getElementById('coffinsResult').innerText = coffinsFormatado;
+    document.getElementById('calculoNResult').innerText = icmsFormatado;
+    
+    // Adicionar novos valores na interface
+    var totalImportadosElem = document.createElement('p');
+    totalImportadosElem.innerHTML = `<b>Total Importados: </b><span>${totalImportadosFormatado}</span>`;
+    document.querySelector('.container').appendChild(totalImportadosElem);
 
-        document.getElementById('pisValue').classList.remove('hidden');
-        document.getElementById('coffinsValue').classList.remove('hidden');
-        document.getElementById('calculoNValue').classList.remove('hidden');
+    var totalICMSElem = document.createElement('p');
+    totalICMSElem.innerHTML = `<b>Total ICMS: </b><span>${totalICMSFormatado}</span>`;
+    document.querySelector('.container').appendChild(totalICMSElem);
 
-        document.querySelectorAll('#valorDesconto, #pisValue, #coffinsValue, #calculoNValue').forEach(el => {
-            el.classList.add('animated');
-        });
+    // Tornar os elementos visíveis
+    document.getElementById('valorDesconto').classList.remove('hidden');
+    document.getElementById('pisValue').classList.remove('hidden');
+    document.getElementById('coffinsValue').classList.remove('hidden');
+    document.getElementById('calculoNValue').classList.remove('hidden');
 
-        adicionarAoHistorico(desconto, pis, coffins, calculo_N);
-    }
+    // Adicionar ao histórico
+    adicionarAoHistorico(valorTotal, pis, coffins, icms);
 }
+
 
 function limpar() {
   document.getElementById('valorTotal').value = '';
