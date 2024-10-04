@@ -18,7 +18,6 @@ function formatarDataHora() {
 }
 
 function formatarMoeda(valor) {
-  return new Intl.NumberFormat('pt-BR', { minimumFractionDigits: 3, maximumFractionDigits: 3 }).format(valor);
   return new Intl.NumberFormat('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(valor);
 }
 
