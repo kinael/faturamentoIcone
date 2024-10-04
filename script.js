@@ -72,6 +72,7 @@ function calcularDesconto() {
     var totalImportadosFormatado = formatarMoeda(totalImportados);
     var totalICMSFormatado = formatarMoeda(totalICMS);
 
+    
     // Exibir os resultados
     document.getElementById('pisResult').innerText = pisFormatado;
     document.getElementById('coffinsResult').innerText = coffinsFormatado;
