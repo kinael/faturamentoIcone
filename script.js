@@ -17,12 +17,13 @@ function formatarDataHora() {
 }
 
 function formatarMoeda(valor) {
+  return new Intl.NumberFormat('pt-BR', { minimumFractionDigits: 3, maximumFractionDigits: 3 }).format(valor);
   return new Intl.NumberFormat('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(valor);
 }
 
-function adicionarAoHistorico(valor, pis, coffins, calculoN) {
+function adicionarAoHistorico(valor, pis, coffins, calculoN, importadostotal, icmstotal) {
   var dataHoraAtual = formatarDataHora();
-  historicoCalculos.unshift({ valor: formatarMoeda(valor), data: dataHoraAtual, pis: formatarMoeda(pis), coffins: formatarMoeda(coffins), calculoN: formatarMoeda(calculoN) });
+  historicoCalculos.unshift({ valor: formatarMoeda(valor), data: dataHoraAtual, pis: formatarMoeda(pis), coffins: formatarMoeda(coffins), calculoN: formatarMoeda(calculoN), importadostotal: formatarMoeda(importadostotal), icmstotal: formatarMoeda(icmstotal) });
   if (historicoCalculos.length > 5) {
     historicoCalculos.pop();
   }
@@ -33,7 +34,7 @@ function adicionarAoHistorico(valor, pis, coffins, calculoN) {
 
 function exibirDetalhesHistorico(index) {
   var historicoItem = historicoCalculos[index];
-  var mensagem = PIS: ${historicoItem.pis}\nCOFINS: ${historicoItem.coffins}\nICMS: ${historicoItem.calculoN};
+  var mensagem = `PIS: ${historicoItem.pis}\nCOFINS: ${historicoItem.coffins}\nICMS: ${historicoItem.calculoN}\nTOTAL IMPORTADOS: ${historicoItem.importadostotal}\nTOTAL ICMS: ${historicoItem.icmstotal}`;
   alert(mensagem);
 }
 
@@ -42,7 +43,7 @@ function atualizarHistorico() {
   lista.innerHTML = '';
   historicoCalculos.forEach(function(item, index) {
     var li = document.createElement('li');
-    li.innerHTML = <span class="valor">${item.valor}</span> <span class="data">${item.data}</span>;
+    li.innerHTML = `<span class="valor">${item.valor}</span> <span class="data">${item.data}</span>`;
     li.classList.add(index === 0 ? 'ultimo-calculo' : 'calculo-anterior');
     li.addEventListener('click', function() {
       exibirDetalhesHistorico(index);
@@ -60,6 +61,8 @@ function calcularDesconto() {
     var pisResult = document.getElementById('pisResult');
     var coffinsResult = document.getElementById('coffinsResult');
     var calculoNResult = document.getElementById('calculoNResult');
+    var importadostotalResult = document.getElementById('importadostotalResult');
+    var icmstotalResult = document.getElementById('icmstotalResult');
 
       if (isNaN(valorTotal) || isNaN(valorTotalN)) {
         alert('Preencha todos os campos corretamente.');
@@ -70,6 +73,8 @@ function calcularDesconto() {
         var pis = valorTotal * 0.0165;
         var coffins = valorTotal * 0.076;
         var calculo_N = valorTotalN * 0.07;
+        var importadostotal = valorTotal - valorTotalN;
+        var icmstotal = (valorTotal - valorTotalN) * 0.04;
 
         var desconto = pis + coffins + calculo_N;
         resultado.textContent = formatarMoeda(desconto);
@@ -77,16 +82,21 @@ function calcularDesconto() {
         pisResult.textContent = formatarMoeda(pis);
         coffinsResult.textContent = formatarMoeda(coffins);
         calculoNResult.textContent = formatarMoeda(calculo_N);
+        importadostotalResult.textContent = formatarMoeda(importadostotal);
+        icmstotalResult.textContent = formatarMoeda(icmstotal);
+
 
         document.getElementById('pisValue').classList.remove('hidden');
         document.getElementById('coffinsValue').classList.remove('hidden');
         document.getElementById('calculoNValue').classList.remove('hidden');
+        document.getElementById('importadostotalValue').classList.remove('hidden');
+        document.getElementById('icmstotalValue').classList.remove('hidden');
 
-        document.querySelectorAll('#valorDesconto, #pisValue, #coffinsValue, #calculoNValue').forEach(el => {
+        document.querySelectorAll('#valorDesconto, #pisValue, #coffinsValue, #calculoNValue, #importadostotalValue, #icmstotalValue').forEach(el => {
             el.classList.add('animated');
         });
 
-        adicionarAoHistorico(desconto, pis, coffins, calculo_N);
+        adicionarAoHistorico(desconto, pis, coffins, calculo_N, importadostotal, icmstotal);
     }
 }
 
@@ -98,13 +108,17 @@ function limpar() {
   document.getElementById('pisResult').textContent = 'XXX,XXX';
   document.getElementById('coffinsResult').textContent = 'XXX,XXX';
   document.getElementById('calculoNResult').textContent = 'XXX,XXX';
+  document.getElementById('importadostotalResult').textContent = 'XXX,XXX';
+  document.getElementById('icmstotalResult').textContent = 'XXX,XXX';
 
   document.getElementById('valorDesconto').classList.add('hidden');
   document.getElementById('pisValue').classList.add('hidden');
   document.getElementById('coffinsValue').classList.add('hidden');
   document.getElementById('calculoNValue').classList.add('hidden');
+  document.getElementById('importadostotalValue').classList.add('hidden');
+  document.getElementById('icmstotalValue').classList.add('hidden');
 
-  document.querySelectorAll('#valorDesconto, #pisValue, #coffinsValue, #calculoNValue').forEach(el => {
+  document.querySelectorAll('#valorDesconto, #pisValue, #coffinsValue, #calculoNValue, #importadostotalValue, #icmstotalValue').forEach(el => {
     el.classList.remove('animated');
   });
 }
