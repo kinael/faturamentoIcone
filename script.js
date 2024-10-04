@@ -6,6 +6,7 @@ function exibirModalSobre() {
     modalSobre.style.display = 'block';
 }
 
+
 function fecharModalSobre() {
     var modalSobre = document.getElementById('modalSobre');
     modalSobre.style.display = 'none';
